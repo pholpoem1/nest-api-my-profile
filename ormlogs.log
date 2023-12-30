@@ -1,0 +1,199 @@
+[2023-12-30T13:03:42.597Z][QUERY]: SELECT VERSION() AS `version`
+[2023-12-30T13:03:42.613Z][QUERY]: START TRANSACTION
+[2023-12-30T13:03:42.616Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2023-12-30T13:03:42.617Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'my_profile' AND `TABLE_NAME` = 'work_experience'
+[2023-12-30T13:03:42.637Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'my_profile'
+                    AND
+                    `TABLE_NAME` = 'work_experience'
+                
+[2023-12-30T13:03:42.637Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'my_profile'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'work_experience'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2023-12-30T13:03:42.639Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2023-12-30T13:03:42.639Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'my_profile'
+                    AND
+                    `TABLE_NAME` = 'work_experience'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'my_profile'
+                    AND
+                    `TABLE_NAME` = 'work_experience'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2023-12-30T13:03:42.640Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'my_profile'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'work_experience'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'my_profile'
+                    AND
+                    `TABLE_NAME` = 'work_experience'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2023-12-30T13:03:42.663Z][QUERY]: SELECT VERSION() AS `version`
+[2023-12-30T13:03:42.665Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'my_profile' AND `TABLE_NAME` = 'typeorm_metadata'
+[2023-12-30T13:03:42.668Z][QUERY]: COMMIT
+[2023-12-30T13:03:51.692Z][QUERY]: SELECT `WorkExperience`.`id` AS `WorkExperience_id`, `WorkExperience`.`position` AS `WorkExperience_position`, `WorkExperience`.`companyName` AS `WorkExperience_companyName`, `WorkExperience`.`startDate` AS `WorkExperience_startDate`, `WorkExperience`.`endDate` AS `WorkExperience_endDate`, `WorkExperience`.`description` AS `WorkExperience_description` FROM `work_experience` `WorkExperience`
+[2023-12-30T13:42:50.677Z][QUERY]: SELECT VERSION() AS `version`
+[2023-12-30T13:42:50.694Z][QUERY]: START TRANSACTION
+[2023-12-30T13:42:50.696Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2023-12-30T13:42:50.698Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'my_profile' AND `TABLE_NAME` = 'work_experience'
+[2023-12-30T13:42:50.706Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'my_profile'
+                    AND
+                    `TABLE_NAME` = 'work_experience'
+                
+[2023-12-30T13:42:50.707Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'my_profile'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'work_experience'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2023-12-30T13:42:50.707Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2023-12-30T13:42:50.708Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'my_profile'
+                    AND
+                    `TABLE_NAME` = 'work_experience'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'my_profile'
+                    AND
+                    `TABLE_NAME` = 'work_experience'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2023-12-30T13:42:50.708Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'my_profile'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'work_experience'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'my_profile'
+                    AND
+                    `TABLE_NAME` = 'work_experience'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2023-12-30T13:42:50.723Z][QUERY]: SELECT VERSION() AS `version`
+[2023-12-30T13:42:50.724Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'my_profile' AND `TABLE_NAME` = 'typeorm_metadata'
+[2023-12-30T13:42:50.728Z][QUERY]: COMMIT
