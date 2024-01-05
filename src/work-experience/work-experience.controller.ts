@@ -1,24 +1,24 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
-import { WorkExperienceService } from './work-experience.service';
-import { CreateWorkExperienceDto } from './dto/create-work-experience.dto';
-import { UpdateWorkExperienceDto } from './dto/update-work-experience.dto';
-import { IWorkExperiencePayload } from './interface/work-experience';
+import { Controller, Get, Post, Body, Param, Delete } from "@nestjs/common";
+import { WorkExperienceService } from "./work-experience.service";
+import { CreateWorkExperienceDto } from "./dto/create-work-experience.dto";
+import { UpdateWorkExperienceDto } from "./dto/update-work-experience.dto";
+import { IWorkExperiencePayload } from "./interface/work-experience";
 
-@Controller('work-experience')
+@Controller("work-experience")
 export class WorkExperienceController {
   constructor(private readonly workExperienceService: WorkExperienceService) {}
 
-  @Post('/saveWorkExperience')
+  @Post("/saveWorkExperience")
   saveWorkExperience(
     @Body()
-    createWorkExperienceDto: IWorkExperiencePayload,
+    createWorkExperienceDto: IWorkExperiencePayload
   ) {
     const _startDate = new Date(createWorkExperienceDto.startDate);
     const _endDate = new Date(createWorkExperienceDto.endDate);
     return this.workExperienceService.saveWorkExperience({
       ...createWorkExperienceDto,
       startDate: _startDate,
-      endDate: _endDate,
+      endDate: _endDate
     });
   }
 
@@ -27,23 +27,28 @@ export class WorkExperienceController {
     return this.workExperienceService.getAllWorkExperience();
   }
 
-  @Get(':id')
-  getIdWorkExperience(@Param('id') id: string) {
+  @Get(":id")
+  getIdWorkExperience(@Param("id") id: string) {
     const _id = Number(id);
     return this.workExperienceService.getIdWorkExperience(_id);
   }
 
-  @Post('/updateWorkExperience')
+  @Post("/updateWorkExperience")
   updateWorkExperience(
-    @Body() updateWorkExperienceDto: UpdateWorkExperienceDto,
+    @Body() updateWorkExperienceDto: UpdateWorkExperienceDto
   ) {
-    return this.workExperienceService.updateWorkExperience(
-      updateWorkExperienceDto,
-    );
+    const _startDate = new Date(updateWorkExperienceDto.startDate);
+    const _endDate = new Date(updateWorkExperienceDto.endDate);
+
+    return this.workExperienceService.updateWorkExperience({
+      ...updateWorkExperienceDto,
+      startDate: _startDate,
+      endDate: _endDate
+    });
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
+  @Delete(":id")
+  remove(@Param("id") id: string) {
     return this.workExperienceService.remove(+id);
   }
 }
