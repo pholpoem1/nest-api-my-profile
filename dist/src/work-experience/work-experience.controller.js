@@ -26,7 +26,7 @@ let WorkExperienceController = class WorkExperienceController {
         return this.workExperienceService.saveWorkExperience({
             ...createWorkExperienceDto,
             startDate: _startDate,
-            endDate: _endDate,
+            endDate: _endDate
         });
     }
     getAllWorkExperience() {
@@ -37,7 +37,13 @@ let WorkExperienceController = class WorkExperienceController {
         return this.workExperienceService.getIdWorkExperience(_id);
     }
     updateWorkExperience(updateWorkExperienceDto) {
-        return this.workExperienceService.updateWorkExperience(updateWorkExperienceDto);
+        const _startDate = new Date(updateWorkExperienceDto.startDate);
+        const _endDate = new Date(updateWorkExperienceDto.endDate);
+        return this.workExperienceService.updateWorkExperience({
+            ...updateWorkExperienceDto,
+            startDate: _startDate,
+            endDate: _endDate
+        });
     }
     remove(id) {
         return this.workExperienceService.remove(+id);
@@ -45,7 +51,7 @@ let WorkExperienceController = class WorkExperienceController {
 };
 exports.WorkExperienceController = WorkExperienceController;
 __decorate([
-    (0, common_1.Post)('/saveWorkExperience'),
+    (0, common_1.Post)("/saveWorkExperience"),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -58,28 +64,28 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], WorkExperienceController.prototype, "getAllWorkExperience", null);
 __decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Get)(":id"),
+    __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], WorkExperienceController.prototype, "getIdWorkExperience", null);
 __decorate([
-    (0, common_1.Post)('/updateWorkExperience'),
+    (0, common_1.Post)("/updateWorkExperience"),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [update_work_experience_dto_1.UpdateWorkExperienceDto]),
     __metadata("design:returntype", void 0)
 ], WorkExperienceController.prototype, "updateWorkExperience", null);
 __decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Delete)(":id"),
+    __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], WorkExperienceController.prototype, "remove", null);
 exports.WorkExperienceController = WorkExperienceController = __decorate([
-    (0, common_1.Controller)('work-experience'),
+    (0, common_1.Controller)("work-experience"),
     __metadata("design:paramtypes", [work_experience_service_1.WorkExperienceService])
 ], WorkExperienceController);
 //# sourceMappingURL=work-experience.controller.js.map

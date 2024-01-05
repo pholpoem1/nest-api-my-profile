@@ -1,7 +1,7 @@
-import { WorkExperienceService } from './work-experience.service';
-import { CreateWorkExperienceDto } from './dto/create-work-experience.dto';
-import { UpdateWorkExperienceDto } from './dto/update-work-experience.dto';
-import { IWorkExperiencePayload } from './interface/work-experience';
+import { WorkExperienceService } from "./work-experience.service";
+import { CreateWorkExperienceDto } from "./dto/create-work-experience.dto";
+import { UpdateWorkExperienceDto } from "./dto/update-work-experience.dto";
+import { IWorkExperiencePayload } from "./interface/work-experience";
 export declare class WorkExperienceController {
     private readonly workExperienceService;
     constructor(workExperienceService: WorkExperienceService);
